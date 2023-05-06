@@ -25,7 +25,7 @@ class PriceController extends AbstractController
     }
 
     #[Route(
-        path: '/price',
+        path: '/',
         name: 'app_price',
         methods: ['GET', 'POST']
     )]
