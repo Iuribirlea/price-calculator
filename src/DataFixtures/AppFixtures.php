@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
     /**
      * @return void
      */
-    private function addCountryFixtures(): void {
+    private function addProductFixtures(): void {
 
         // Create products
         $headphones = new Product();
@@ -48,7 +48,7 @@ class AppFixtures extends Fixture
     /**
      * @return void
      */
-    private function addProductFixtures(): void {
+    private function addCountryFixtures(): void {
 
         $germany = new Country();
         $germany->setName('Germany')
