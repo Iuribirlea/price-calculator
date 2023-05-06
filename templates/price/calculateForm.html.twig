@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        /* Custom CSS styles for error message text */
+        .alert p {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #721c24;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}Calculate  price{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Calculate Price</h1>
+        {% if app.session.flashBag.has('error') %}
+            <div class="alert alert-danger">
+                {% for message in app.flashes('error') %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {{ form_start(productForm) }}
+        <div class="form-group">
+            {{ form_label(productForm.name) }}
+            {{ form_widget(productForm.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {% if form_errors(productForm.taxNumber) %}
+                <div class="alert alert-warning">{{ form_errors(productForm.taxNumber) }}</div>
+            {% endif %}
+            {{ form_label(productForm.taxNumber) }}
+            {{ form_widget(productForm.taxNumber, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        {{ form_widget(productForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+        {{ form_end(productForm) }}
+
+        <div class="card mb-3 mt-3 price-section">
+            {% if price is defined %}
+                <div class="card-body">
+                    <h5 class="card-title">Price including taxes:</h5>
+                    <p class="card-text">{{ price }} euros</p>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}
