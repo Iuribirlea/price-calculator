@@ -22,7 +22,7 @@ class Product
 
     #[Assert\NotBlank]
     #[Assert\Regex(
-        pattern: "/^(DE|IT|GR)\d{9}$/",
+        pattern: "/^((DE|GR)\d{9})|(IT\d{11})$/",
         message: "Tax number must be in the format DEXXXXXXXXX, ITXXXXXXXXXXX or GRXXXXXXXXX, where X is any numeric symbol."
     )]
     private string $taxNumber;
